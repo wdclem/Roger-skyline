@@ -26,7 +26,20 @@ need to change the ssh file
 sudo vim /etc/ssh/ssh_config
 change #port 22 by a port in the correct range (remove the comment # and add as follow port 50000
 restart ssh service : sudo service ssh restart // sudo /etc/init.d/ssh restart
-then try to connect username@hostname -p 50000
+then try to connect username@hostname -p 60000 ( I picked 60000)
 
 5** connect with public keys https://www.linode.com/docs/guides/use-public-key-authentication-with-ssh/
 https://www.cyberciti.biz/faq/ubuntu-18-04-setup-ssh-public-key-authentication/
+
+NEED TO TEST CONNECT REMOTELY (not sure i make it work -______-
+
+6** Setup firevall on your server
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04
+install ufw with sudo apt install ufw
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 443
+sudo ufw allow 80/tcp
+port 80/tcp is HTTP (only for TCP not UDP), 443 is HTTPS, and 60000 is SSH.
+
+sudo ufw enable sudo ufw status verbose
