@@ -63,6 +63,7 @@ First need to fail2ban and have apache2 installed
 https://bobcares.com/blog/centos-ddos-protection/
 https://www.tothenew.com/blog/fail2ban-port-80-to-protect-sites-from-dos-attacks/https://www.tothenew.com/blog/fail2ban-port-80-to-protect-sites-from-dos-attacks/
 create a conf file into jail.d and set configuration to it on the port
+
   [DEFAULT]
   bantime  = 10m
   findtime  = 10m
@@ -87,7 +88,7 @@ create a conf file into jail.d and set configuration to it on the port
   bantime = 600
   action = iptables[name=HTTP, port=http, protocol=tcp]
   
-  create a filter sudo vim /etc/fail2ban/filter.d/http-get-dos.conf and set configuration in
+ create a filter sudo vim /etc/fail2ban/filter.d/http-get-dos.conf and set configuration in
   
   [Definition]
   failregex = ^<HOST> -.*"(GET|POST).*
@@ -147,5 +148,5 @@ create a conf file into jail.d and set configuration to it on the port
   
   create a script for update and then to monitor changes
   
- add 0 0 * * * sudo ~/scripts/monitor_changes.sh to execute at midnight
+  add 0 0 * * * sudo ~/scripts/monitor_changes.sh to execute at midnight
   
