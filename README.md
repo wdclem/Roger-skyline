@@ -150,3 +150,70 @@ create a conf file into jail.d and set configuration to it on the port
   
   add 0 0 * * * sudo ~/scripts/monitor_changes.sh to execute at midnight
   
+EVAL ANSWERS
+  
+  PART 1
+  VM VERSION
+cat /etc/os-release
+cat /etc/debian_version
+  
+  TRAEFIK DOCKER VAGRANT
+  
+  dpkg -l
+  apt list --installed
+  
+  SIZE OF DISK/PARTITION
+  To check partition fdisk -l into >> sudo parted unit GB >> print list
+  
+  CHECK IF UP TO DATE
+  sudo apt update
+  
+  PART2
+  
+  CREATE SUDO and CONNECT SSH
+  Create a non-root user >> sudo adduser johnny >> sudo adduser johnny sudo
+  cat /etc/group
+  sudo -l
+  
+  ssh rene@10.11.223.255
+  Create a key ssh-keygen -t rsa, keep default configuration
+  ssh-copy-id -i ~/.ssh/id_rsa.pub johnny@10.11.223.255 -p 60000 from your terminal (not vm) to allow connection with public key
+  
+  CHECK DHCP
+  sudo service dhcp status
+  ip r 
+  Should both show no DHCP
+  
+  CHANGE NETMASK
+  
+  set settings network to bridge
+into etc/network/interface/ change primary network interface to auto enp0s3
+then create interfaces.d
+$ cd interfaces.d
+$ sudo touch enp0s3
+$ sudo vim enp0s3
+set ip first 10.12.223.255 (something free)
+netmask  255.255.255.252 (/30 or 30 * 1)
+gateway  10.11.254.254
+  sudo service networking restart
+  check on debian
+  and reconnect
+  check ifconfig
+  
+  CHECK SSH MODIFICATION WIHT PUBLICKEYS
+  
+  sudo cat /etc/ssh/sshd_config
+	#Port 60000
+	#PermitRootLogin no
+	#PubkeyAuthentication yes
+	#PasswordAuthentication no 
+	
+	#can try to connect 
+	# ssh root@10.11.142.143 -p 60000
+  
+  LIST FIREWALL RULES
+  
+  sudo ufw status verbose
+  
+  
+  
