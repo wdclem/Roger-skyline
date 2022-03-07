@@ -271,6 +271,7 @@ stands for secure sockets layer, are web protocols used to wrap normal traffic i
 DEPLOYMENT/WEB
 
 sudo apt list --installed | grep apache
+sudo vim /etc/apache2/sites-available/000-default.conf
 
 Check execution of script /home/johnny/auto.sh
 check mail
