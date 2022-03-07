@@ -136,6 +136,7 @@ create a conf file into jail.d and set configuration to it on the port
   Create script to execute sudo apt update and upgrade record it in /var/log/update.log
   
   sudo crontab -e
+	use & to use in the background
   0 4 * * 0 sudo ~scripts/update.sh
   @reboot sudo ~/scripts/update.sh
   
