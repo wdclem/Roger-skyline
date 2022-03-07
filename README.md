@@ -148,7 +148,15 @@ create a conf file into jail.d and set configuration to it on the port
   
   create a script for update and then to monitor changes
   
-  add 0 0 * * * sudo ~/scripts/monitor_changes.sh to execute at midnight
+  add 0 0 * * * sudo ~/scripts/monitor_changes.sh to execute at midnight (change file path)
+	
+12** Self signed SSL
+	https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-debian-10
+	https://linuxize.com/post/how-to-install-apache-on-debian-10/
+	
+	
+
+======================================================================================================================================
   
 EVAL ANSWERS
   
@@ -214,6 +222,58 @@ gateway  10.11.254.254
   LIST FIREWALL RULES
   
   sudo ufw status verbose
+  can check with sudo iptables -L for more details
+
+	
+RUN COMMAND TO DOS ATTACK
+	
+ab -k -c 350 -n 20000 http://10.11.223.255/ for the dos attack from other computer
+	
+To check if fail2ban is install
+	sudo fail2ban-client status (http-get-dos)
+fail2ban info should be in the var/log/fail2ban.log
   
   
-  
+  LIST OF OPEN PORT ON THE VM (should bbe 80, 443, 60000)
+sudo ufw status / sudo lsof -i -P (list open files) (ip sockets, port)
+	
+ENABLE SERVICES 
+	sudo service --status-all
+	systemctl list-units --type service --all
+	sudo systemctl list-unit-files --type service | grep enabled
+apparmor security system
+dbus system for interprocess communication
+getty for login
+psad intrusion log with iptables
+rsyslog use to forward log messages
+//porstentry to detaect and respond port scan
+
+CHECK THE SCRIPT TO UPDATE
+	
+sudo ls /home/johnny
+sudo cat /home/johnny/update.sh
+
+sudo crontab -e
+	
+CHECK THE SCRIPT TO TRACK MONITOR CHANGES
+	
+sudo sh /home/johnny/monitor_changes.sh
+	sudo cat /etc/crontab.back
+	sudo cat /etc/crontab
+mail
+	
+CHECK SELF SIGNED SSL SERVICES
+
+sudo cat /etc/ssl/certs/apache-selfsigned.crt 
+Can also try to connect with https
+stands for secure sockets layer, are web protocols used to wrap normal traffic in a protected, encrypted wrapper.
+
+DEPLOYMENT/WEB
+
+sudo apt list --installed | grep apache
+
+Check execution of script /home/johnny/auto.sh
+check mail
+	
+
+	
