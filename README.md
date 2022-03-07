@@ -258,6 +258,7 @@ sudo crontab -e
 	
 CHECK THE SCRIPT TO TRACK MONITOR CHANGES
 	
+	Can use & to make command in the background
 sudo sh /home/johnny/monitor_changes.sh
 	sudo cat /etc/crontab.back
 	sudo cat /etc/crontab
